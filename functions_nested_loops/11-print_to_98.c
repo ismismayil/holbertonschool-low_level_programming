@@ -12,7 +12,7 @@ void print_to_98(int n)
 		while (n <= 98)
 		{
 			_putchar(n + '0');
-		n++
+		n++;
 		}
 	}
 	else
@@ -20,7 +20,7 @@ void print_to_98(int n)
 		while (n >= 98)
 		{
 			_putchar(n + '0');
-		n--
+		n--;
 		}
 	}
 }
