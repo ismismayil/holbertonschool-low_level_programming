@@ -2,13 +2,12 @@
 #include <stdlib.h>
 /**
  * _abs - Computes the absolute value of an integer.
- *@n: The integer to check
+ * @n: The integer to check
  *
  * Return: absolute value of an integer.
  */
 int _abs(int n)
 {
-	abs(n);
-	return (n);
+	return abs(n);
 }
 	
