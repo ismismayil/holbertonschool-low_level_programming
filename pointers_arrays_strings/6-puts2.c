@@ -1,32 +1,21 @@
 #include "main.h"
 
 /**
- * cap_string - Capitalizes all words of a string
- * @s: Input string
+ * puts2 - Prints every other character of a string
+ * @str: The input string
  *
- * Return: Modified string
+ * Description: Starts with the first character, then prints
+ * every other character, followed by a new line.
  */
-char *cap_string(char *s)
+void puts2(char *str)
 {
 	int i = 0;
-	char sep[] = " \t\n,;.!?\"(){}";
-	int j;
 
-	if (s[0] >= 'a' && s[0] <= 'z')
-		s[0] -= 32;
-
-	while (s[i])
+	while (str[i])
 	{
-		for (j = 0; sep[j]; j++)
-		{
-			if (s[i] == sep[j] && s[i + 1] >= 'a' && s[i + 1] <= 'z')
-			{
-				s[i + 1] -= 32;
-				break;
-			}
-		}
+		if (i % 2 == 0)
+			_putchar(str[i]);
 		i++;
 	}
-
-	return (s);
+	_putchar('\n');
 }
