@@ -7,19 +7,19 @@
  */
 void rev_string(char *s)
 {
-	int 1st = 0, last = 0;
+	int first = 0, last = 0;
 	char rev;
 
 	while (s[last] != '\0')
 	{
 		last++;
 	}
-	while (1st < last - 1)
+	while (first < last - 1)
 	{
-		rev = s[1st];
-		s[1st] = s[last];
+		rev = s[first];
+		s[first] = s[last];
 		s[last] = rev;
-		1st++;
+		first++;
 		last--;
 	}
 }
