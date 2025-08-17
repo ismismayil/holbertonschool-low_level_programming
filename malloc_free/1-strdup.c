@@ -8,3 +8,11 @@
  */
 char *_strdup(char *str)
 {
+	unsigned int i, k;
+	char *a;
+
+	if (str == NULL)
+	{
+		return (NULL);
+	}
+	for (k = 0; str[k] != '\0'; k++)
