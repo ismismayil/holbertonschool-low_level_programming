@@ -3,7 +3,7 @@
 /**
  * *_strdup - Returns a heap-allocated
  *            copy of the given string.
- * @str - null-terminated input string to duplicate
+ * @str: Null-terminated input string to duplicate
  *
  * Return: pointer to the duplicated
  *         string on success, or NULL on failure.
