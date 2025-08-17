@@ -1,10 +1,12 @@
 #include "main.h"
 #include <stdlib.h>
 /**
- * *_strdup - Returns a heap-allocated copy of the given string.
+ * *_strdup - Returns a heap-allocated 
+ *            copy of the given string.
  * @str - null-terminated input string to duplicate
  *
- * Return: pointer to the duplicated string on success, or NULL on failure.
+ * Return: pointer to the duplicated 
+ *         string on success, or NULL on failure.
  *         The returned buffer must be freed by the caller.
  */
 char *_strdup(char *str)
@@ -28,5 +30,6 @@ char *_strdup(char *str)
 	{
 		a[i] = str[i];
 	}
+	a[i] = '\0';
 	return (a);
 }
