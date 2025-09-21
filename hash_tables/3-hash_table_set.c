@@ -1,53 +1,54 @@
+#include <stdlib.h>
 #include "hash_tables.h"
+#include <string.h>
 
 /**
- * hash_table_set - a function that adds an element to the hash table
- * @ht: the hash table you want to add or update the key/value to
- * @key: the key
- * @value: the value associated with key.
+ * hash_table_set - adds or updates an element in a hash table
+ * @hash_t: pointer to the hash table
+ * @key: the key (cannot be empty)
+ * @value: value associated with key (will be duplicated)
  *
- * Return: 1 if it succeeded otherwise 0
- *
+ * Return: 1 if success, 0 otherwise
  */
-int hash_table_set(hash_table_t *ht, const char *key, const char *value)
+int hash_table_set(hash_table_t *hash_t, const char *key, const char *value)
 {
-	hash_node_t *new;
-	char *_value;
-	unsigned long int index, i;
+	unsigned long int index;
+	hash_node_t *node, *tmp;
+	char *value_copy;
 
-	if (ht == NULL || key == NULL || *key == '\0' || value == NULL)
+	if (!hash_t || !key || !*key || !value)
 		return (0);
 
-	_value = strdup(value);
-	if (_value == NULL)
+	value_copy = strdup(value);
+	if (!value_copy)
 		return (0);
 
-	index = key_index((const unsigned char *)key, ht->size);
-	for (i = index; ht->array[i]; i++)
-	{
-		if (strcmp(ht->array[i]->key, key) == 0)
+	index = key_index((const unsigned char *)key, hash_t->size);
+	for (tmp = hash_t->array[index]; tmp; tmp = tmp->next)
+		if (strcmp(tmp->key, key) == 0)
 		{
-			free(ht->array[i]->value);
-			ht->array[i]->value = _value;
+			free(tmp->value);
+			tmp->value = value_copy;
 			return (1);
 		}
-	}
 
-	new = malloc(sizeof(hash_node_t));
-	if (new == NULL)
+	node = malloc(sizeof(hash_node_t));
+	if (!node)
 	{
-		free(_value);
+		free(value_copy);
 		return (0);
 	}
-	new->key = strdup(key);
-	if (new->key == NULL)
+
+	node->key = strdup(key);
+	if (!node->key)
 	{
-		free(new);
+		free(value_copy);
+		free(node);
 		return (0);
 	}
-	new->value = _value;
-	new->next = ht->array[index];
-	ht->array[index] = new;
 
+	node->value = value_copy;
+	node->next = hash_t->array[index];
+	hash_t->array[index] = node;
 	return (1);
 }
